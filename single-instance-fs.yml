@@ -7,7 +7,7 @@
    roles:
       - common
       - orahost
-      - orahost-storage
+#      - orahost-storage
       - cxoracle
       - orahost-logrotate
 

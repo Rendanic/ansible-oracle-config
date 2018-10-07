@@ -1,3 +1,7 @@
 
+[db]
+oradb03
+
 [dg1]
 oradg01
+oradg02
