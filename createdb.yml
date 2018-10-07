@@ -1,0 +1,6 @@
+---
+ - name: Database Server Database Creation
+   hosts: "{{ hostgroup }}"
+   become: yes
+   roles:
+      - oradb-manage-db

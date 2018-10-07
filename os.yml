@@ -1,0 +1,14 @@
+---
+
+
+ - name: Host configuration
+   hosts: "{{ hostgroup }}"
+   become: yes
+   roles:
+      - common
+      - orahost
+      - orahost-storage
+      - cxoracle
+      - orahost-logrotate
+
+
