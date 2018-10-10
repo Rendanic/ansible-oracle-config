@@ -37,7 +37,7 @@ db_homes_config:
     oracle_home: /u01/app/oracle/product/12.1.0.2/db1-latest
     edition: EE
     dnfs: true
-    opatch_minversion: 12.2.0.1.12
+    opatch_minversion: 12.2.0.1.13
     opatch:
         # 27547329;Database Patch Set Update : 12.1.0.2.180717 (27547329)
         - patchid: 27547329
