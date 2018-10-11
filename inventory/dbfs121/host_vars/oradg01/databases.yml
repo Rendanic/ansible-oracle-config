@@ -31,13 +31,15 @@ oracle_databases:                                               # Dictionary des
              - {name: archive_lag_target, value: '900', scope: both, state: present}
              - {name: control_file_record_keep_time, value: '30', scope: both, state: present}
              - {name: db_files, value: '100', scope: spfile, state: present}
+             - {name: dg_broker_start, value: 'true', scope: both, state: present, dbca: False}
              - {name: deferred_segment_creation , value: 'False', scope: both, state: present}
              - {name: filesystemio_options , value: 'setall', scope: spfile, state: present}
              - {name: job_queue_processes , value: '10', scope: both, state: present}
-#             - {name: large_pages , value: 'ONLY', scope: spfile, state: present}
+#             - {name: use_large_pages , value: 'ONLY', scope: spfile, state: present}
              - {name: log_archive_dest_1 , value: 'location=USE_DB_RECOVERY_FILE_DEST', scope: both, state: present}
+             - {name: log_archive_config , value: 'DG_CONFIG=(testdbu1)', scope: both, state: present, dbca: False}
              - {name: log_buffer , value: '64M', scope: spfile, state: present}
-#             - {name: pga_aggregate_target, value: '200M', scope: both, state: present}
+             - {name: pga_aggregate_target, value: '200M', scope: both, state: present, dbca: False}
              - {name: recyclebin, value: 'off', scope: spfile, state: present}
              - {name: standby_file_management , value: 'AUTO', scope: both, state: present}
              - {name: streams_pool_size , value: '152M', scope: spfile, state: present}
@@ -48,7 +50,7 @@ oracle_databases:                                               # Dictionary des
              - {name: db_create_file_dest, value: '/u02/oradata', scope: both, state: present}
              - {name: db_create_online_log_dest_1, value: '/u02/oradata', scope: both, state: present}
              # file_dest_size in bytes in 12.1.0.2 due to bug in DBCA
-             - {name: db_recovery_file_dest_size, value: 10737418240, scope: both, state: present}
+             - {name: db_recovery_file_dest_size, value: 10737418240, scope: both, state: present,dbca: False}
 
         services:
              - { name: service2,  state: started }
