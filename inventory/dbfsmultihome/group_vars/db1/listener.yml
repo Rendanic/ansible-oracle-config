@@ -1,0 +1,24 @@
+
+oracle_listeners_config:
+   LISTENER1522:
+        home: 12102-latest
+        address:
+          - host: "{{ansible_hostname}}"
+            protocol: TCP
+            port: 1522
+
+   LISTENER1523:
+        home: 12201-latest
+        address:
+          - host: "{{ansible_hostname}}"
+            protocol: TCP
+            port: 1523
+
+listener_installed:
+      - home: 12102-latest
+        listener_name: LISTENER1522
+        state: present
+      - home: 12201-latest
+        listener_name: LISTENER1523
+        state: present
+

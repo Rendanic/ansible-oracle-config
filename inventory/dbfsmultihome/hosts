@@ -1,0 +1,8 @@
+
+# db1: DB 12.1.0.2
+[db1]
+oradb03
+
+[dg1]
+oradg01
+oradg02
