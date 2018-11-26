@@ -86,7 +86,7 @@ oracle_tnsnames_config:
 
       testdb1_dgmgrl:
         connect:
-          service_name: testdb1_DGMGRL
+          service_name: testdbu1_DGMGRL
         address:
           - host: oradg01
             protocol: TCP
@@ -94,7 +94,7 @@ oracle_tnsnames_config:
 
       testdb2_dgmgrl:
         connect:
-          service_name: testdb2_DGMGRL
+          service_name: testdbu2_DGMGRL
         address:
           - host: oradg02
             protocol: TCP
