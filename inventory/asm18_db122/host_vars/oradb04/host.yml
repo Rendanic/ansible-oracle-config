@@ -1,0 +1,13 @@
+
+   configure_hugepages_by: memory
+   size_in_gb_hugepages: 0
+
+   configure_host_disks: true
+
+   host_fs_layout:    
+    - vgname: orabasevg
+      state: present
+      filesystem:
+        - {mntp: /u01, lvname: orabaselv, lvsize: 35G, fstype: ext4}
+      disk:
+        - {device: /dev/sdb, pvname: /dev/sdb1}

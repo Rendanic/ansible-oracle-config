@@ -1,0 +1,10 @@
+
+[db]
+oradb03
+
+[dg1]
+oradg01
+oradg02
+
+[dbasm]
+oradb04

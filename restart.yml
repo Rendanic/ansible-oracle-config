@@ -1,0 +1,8 @@
+---
+
+ - name: Grid-Infrastructure/Restart Installation
+   hosts: "{{ hostgroup }}"
+   become: yes
+   roles:
+      - oraswgi-install
+      - oraasm-manage-diskgroups
