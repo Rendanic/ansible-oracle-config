@@ -3,12 +3,28 @@
    oracle_install_version_gi: 18.3.0.0
    oracle_asm_init_dg: data
 
-   apply_patches_gi: False
+   apply_patches_gi: True
+
+   gi_patches:
+       18.3.0.0:
+            # Grid Infrastructure 18 Release Updates and Revisions Bugs Fixed Lists (Doc ID 2384954.1)
+            opatch_minversion: 12.2.0.1.16
+            opatchauto:
+                - patchid: 29301682
+                  patchversion: 18.6.0.0.190416
+                  state: present
+                  subpatches:
+                      - 29302264
+                      - 29301631
+                      - 29301643
+                      - 28435192
+                      - 28547619
 
    device_persistence: asmlib
 
    asm_diskgroups:        # ASM Diskgroups used for DB-storage. Should map to dict asm_storage_layout. 
     - diskgroup: data
+      state: present
       properties:
         - {redundancy: external, ausize: 4}
       attributes:
@@ -17,6 +33,7 @@
       disk:
         - {device: /dev/sdc, asmlabel: data01}
     - diskgroup: fra
+      state: present
       properties:
         - {redundancy: external, ausize: 4}
       attributes:
