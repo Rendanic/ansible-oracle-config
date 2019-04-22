@@ -1,0 +1,14 @@
+---
+
+ - name: Grid Infrastructure patches
+   hosts: "{{ hostgroup }}"
+   become: yes
+   roles:
+      - oraswgi-manage-patches
+
+# - name: Database Server Patching
+#   hosts: "{{ hostgroup }}"
+#   become: yes
+#   roles:
+#      - oraswdb-manage-patches
+#      - oradb-datapatch
