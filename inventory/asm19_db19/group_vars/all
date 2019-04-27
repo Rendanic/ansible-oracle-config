@@ -1,0 +1,20 @@
+---
+  configure_motd: False
+  is_sw_source_local: true
+  oracle_sw_copy: False
+  oracle_sw_unpack: False
+  oracle_user: oracle
+  configure_cluster: False
+  role_separation: False
+
+  configure_hugepages_by: memory
+  size_in_gb_hugepages: 0
+
+  oracle_stage_remote: /sw/oracle/linux64
+
+  #oracle_sw_source_www: http://oladmin/orasw
+  #is_sw_source_local: false
+  #install_from_nfs: true
+  #nfs_server_sw: oladmin
+  #nfs_server_sw_path: /dump/orasw
+  #oracle_stage_remote: /mnt/orasw
