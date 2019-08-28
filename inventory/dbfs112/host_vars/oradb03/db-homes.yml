@@ -1,0 +1,17 @@
+apply_patches_db: True
+db_homes_config:
+  11204:
+    home: db112
+    version: 11.2.0.4
+    edition: EE
+    opatch_minversion: 11.2.0.3.6
+    opatchauto:
+      - patchid: 28204707
+        patchversion: 11.2.0.4.180417
+        state: present
+#        subpatches:
+
+db_homes_installed:
+     - home: 11204
+       apply_patches: True
+       state: present

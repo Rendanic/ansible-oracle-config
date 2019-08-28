@@ -1,0 +1,56 @@
+
+
+oracle_databases:                                               # Dictionary describing the databases to be installed
+      - home: 11204
+        oracle_db_name: testdb
+        oracle_db_unique_name: testdbu1
+        oracle_db_instance_name: testdb1
+        oracle_db_type: SI                                   # Type of database (RAC,RACONENODE,SI)
+        is_container: False
+        storage_type: FS                                     # Database storage to be used. ASM or FS.
+        oracle_db_mem_totalmb: 1024                          # Amount of RAM to be used for SGA
+        oracle_database_type: MULTIPURPOSE                   # MULTIPURPOSE|DATA_WAREHOUSING|OLTP
+        redolog_size: 75M
+        redolog_groups: 3
+        datafile_dest: /u02/oradata
+        recoveryfile_dest: /u02/fra
+        listener_name: LISTENER1521
+        listener_port: 1521
+        archivelog: True
+        flashback: False
+        force_logging: True
+        dbca_templatename: dbca_112.dbt
+        state: present
+        init_parameters:
+             - {name: audit_trail, value: 'NONE', scope: spfile, state: present, dbca: False}
+             - {name: processes, value: '200', scope: spfile, state: present, dbca: False}
+             - {name: local_listener, value: "'oradb03:1521'", scope: both, state: present}
+             - {name: archive_lag_target, value: '900', scope: both, state: present, dbca: False}
+             - {name: control_file_record_keep_time, value: '30', scope: both, state: present, dbca: False}
+             - {name: db_files, value: '500', scope: spfile, state: present, dbca: False}
+             - {name: dg_broker_start, value: 'false', scope: both, state: present, dbca: False}
+             - {name: filesystemio_options , value: 'setall', scope: spfile, state: present, dbca: False}
+             - {name: job_queue_processes , value: '10', scope: both, state: present, dbca: False}
+             - {name: log_archive_dest_1 , value: 'location=USE_DB_RECOVERY_FILE_DEST', scope: both, state: present, dbca: False}
+#             - {name: use_large_pages , value: 'ONLY', scope: spfile, state: present}
+#             - {name: log_archive_config , value: 'DG_CONFIG=(testdbu1)', scope: both, state: present, dbca: False}
+#             - {name: log_buffer , value: '64M', scope: spfile, state: present, dbca: False}
+             - {name: pga_aggregate_target, value: '200M', scope: both, state: present, dbca: False}
+             - {name: recyclebin, value: 'off', scope: spfile, state: present, dbca: False}
+##             - {name: standby_file_management , value: 'AUTO', scope: both, state: present}
+             - {name: streams_pool_size , value: '152M', scope: spfile, state: present, dbca: False}
+             - {name: db_create_file_dest, value: '/u02/oradata', scope: both, state: present}
+             - {name: db_recovery_file_dest, value: '/u02/fra', scope: both, state: present}
+#             - {name: db_create_online_log_dest_1, value: '/u02/oradata', scope: both, state: present}
+             - {name: db_recovery_file_dest_size, value: 10737418240, scope: both, state: present}
+
+#        users:
+#          - schema: dbsnmp
+#            state: unlocked
+#            update_password: always
+#          - schema: check_mk
+#            container: all
+#            grants:
+#                 - select_catalog_role
+#                 - create session
+#            state: present
