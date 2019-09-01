@@ -6,19 +6,19 @@
    apply_patches_gi: True
 
    gi_patches:
-       18.3.0.0:
-            # Grid Infrastructure 18 Release Updates and Revisions Bugs Fixed Lists (Doc ID 2384954.1)
-            opatch_minversion: 12.2.0.1.16
-            opatchauto:
-                - patchid: 29301682
-                  patchversion: 18.6.0.0.190416
-                  state: present
-                  subpatches:
-                      - 29302264
-                      - 29301631
-                      - 29301643
-                      - 28435192
-                      - 28547619
+     19.3.0.0:
+        # Grid Infrastructure 18 Release Updates and Revisions Bugs Fixed Lists (Doc ID 2384954.1)
+        opatch_minversion: 12.2.0.1.17
+        opatchauto:
+          - patchid: 29252072
+            patchversion: 19.4.0.0.190716
+            state: present
+            path: 29708769/29708769
+            subpatches:
+              - 29834717
+              - 29850993
+              - 29851014
+              - 29401763
 
    device_persistence: asmlib
 
