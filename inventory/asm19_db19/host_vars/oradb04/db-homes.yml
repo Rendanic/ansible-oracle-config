@@ -1,17 +1,32 @@
-apply_patches_db: False
-db_homes_config:
+apply_patches_db: True
 
+db_homes_config:
   db193-latest:
-    home: db193-latest
+    home: db19-latest
     version: 19.3.0.0
-    oracle_home: /u01/app/oracle/product/19.3/db1-latest
+    oracle_home: /u01/app/oracle/product/19/db1-latest
     edition: EE
-    opatch_minversion: 12.2.0.1.14
+    opatch_minversion: 12.2.0.1.17
+    opatchauto:
+      - patchid: 29252072
+        # Database Release Update : 19.4.0.0.190716 (29834717)
+        # OCW RELEASE UPDATE 19.4.0.0.0 (29850993)
+        patchversion: 19.4.0.0.190716
+        state: present
+        path: 29708769/29708769
+        subpatches:
+          - 29834717
+          - 29850993
+      - patchid: 29774421
+        # OJVM RELEASE UPDATE: 19.4.0.0.190716 (29774421)
+        patchversion: 19.4.0.0.190716
+        state: present
+        path: 29774421/29774421/
 
 db_homes_installed:
-     - home: db193-latest
-       apply_patches: False
-       state: present
+  - home: db193-latest
+    apply_patches: True
+    state: present
 
 oracle_listeners_config:
    LISTENER1524:
