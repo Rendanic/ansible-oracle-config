@@ -9,62 +9,62 @@ db_homes_config:
     opatch_minversion: 12.2.0.1.14
 
 db_homes_installed:
-     - home: db193-latest
-       apply_patches: False
-       state: present
+  - home: db193-latest
+    apply_patches: False
+    state: present
 
 oracle_listeners_config:
-   LISTENER1524:
-        home: db193-latest
-        address:
-          - host: "{{ansible_hostname}}"
-            protocol: TCP
-            port: 1524
+  LISTENER1524:
+    home: db193-latest
+    address:
+      - host: "{{ansible_hostname}}"
+        protocol: TCP
+        port: 1524
 
 listener_installed:
-      - home: db193-latest
-        listener_name: LISTENER1524
-        state: present
+  - home: db193-latest
+    listener_name: LISTENER1524
+    state: present
 
 oracle_tnsnames_config:
-      testdb:
-        connect:
-          service_name: testdb
-        address:
-          - host: oradg01
-          - host: oradg02
+  testdb:
+    connect:
+      service_name: testdb
+    address:
+      - host: oradg01
+      - host: oradg02
 
-      testdb_dg1:
-        connect:
-          service_name: testdb1_DGMGRL
-        address:
-          - host: oradg01
+  testdb_dg1:
+    connect:
+      service_name: testdb1_DGMGRL
+    address:
+      - host: oradg01
 
-      testdb_dg2:
-        connect:
-          service_name: testdb2_DGMGRL
-        address:
-          - host: oradg02
+  testdb_dg2:
+    connect:
+      service_name: testdb2_DGMGRL
+    address:
+      - host: oradg02
 
-      testdb_test:
-        tnstemplate: dgfailover2 # Custom Template for Special Data-Guard
-        connect:
-          service_name: test
-        address:
-          - host: oradg01
-          - host: oradg02
+  testdb_test:
+    tnstemplate: dgfailover2 # Custom Template for Special Data-Guard
+    connect:
+      service_name: test
+    address:
+      - host: oradg01
+      - host: oradg02
 
-      t1221_dg1:
-        connect:
-          service_name: t1221_DGMGRL
-        address:
-          - host: oradg01
+  t1221_dg1:
+    connect:
+      service_name: t1221_DGMGRL
+    address:
+      - host: oradg01
 
-      t1222_dg2:
-        connect:
-          service_name: t1222_DGMGRL
-        address:
-          - host: oradg02
+  t1222_dg2:
+    connect:
+      service_name: t1222_DGMGRL
+    address:
+      - host: oradg02
 
 
 #tnsnames_installed:
@@ -81,6 +81,6 @@ oracle_tnsnames_config:
 #        state: present
 
 sqlnet_config:
-      sqlnetalias1:
-        - {name: "ADR_BASE", value: "/u01/app/oracle/" }
-        - {name: "SQLNET.ALLOWED_LOGON_VERSION_CLIENT", value: "12" }
+  sqlnetalias1:
+    - {name: "ADR_BASE", value: "/u01/app/oracle/" }
+    - {name: "SQLNET.ALLOWED_LOGON_VERSION_CLIENT", value: "12" }
