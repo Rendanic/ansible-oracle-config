@@ -45,7 +45,7 @@ oracle_databases:                                               # Dictionary des
              # "_cursor_obsolete_threshold" for 12.2+
              # - {name: "_cursor_obsolete_threshold", value: '1024', scope: spfile, state: present}
              # max_pdbs for 12.2+
-             # - {name: max_pdbs , value: '1', scope: both, state: present}
+             - {name: max_pdbs , value: '3', scope: both, state: present}
              - {name: db_create_file_dest, value: '/u02/oradata', scope: both, state: present}
              - {name: db_create_online_log_dest_1, value: '/u02/oradata', scope: both, state: present}
              # file_dest_size in bytes in 12.1.0.2 due to bug in DBCA
