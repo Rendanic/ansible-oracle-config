@@ -55,7 +55,7 @@
          <archiveLogMode>true</archiveLogMode>
          <initParamFileName>{ORACLE_BASE}/admin/{DB_UNIQUE_NAME}/pfile/init.ora</initParamFileName>
       </MiscParams>
-      <SPfile useSPFile="true">{ORACLE_HOME}/dbs/spfiletest.ora</SPfile>
+      <SPfile useSPFile="true">{ORACLE_HOME}/dbs/spfile{DB_NAME}.ora</SPfile>
    </InitParamAttributes>
    <StorageAttributes>
       <ControlfileAttributes id="Controlfile">
