@@ -1,0 +1,3 @@
+---
+- import_playbook: os.yml
+- import_playbook: swdb.yml
