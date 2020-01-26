@@ -1,3 +1,22 @@
 ---
+- name: Host configuration
+  hosts: "{{ hostgroup }}"
+  become: yes
+  tasks:
+    - name: Set new hostname
+      hostname: name="{{inventory_hostname}}.local"
+      tags: sethost
+
 - import_playbook: os.yml
 - import_playbook: swdb.yml
+- import_playbook: createdb.yml
+- import_playbook: manage-db.yml
+
+- name: Zauberkasten
+  hosts: "{{ hostgroup }}"
+  become: yes
+  become_user: oracle
+  tasks:
+    - name: Zauberkasten
+      git: dest=/home/oracle/git/SQL-Zauberkasten repo=https://github.com/Rendanic/SQL-Zauberkasten.git
+      tags: zauberkasten

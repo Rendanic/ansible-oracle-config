@@ -8,7 +8,7 @@ oracle_databases:                                               # Dictionary des
         oracle_db_type: SI                                   # Type of database (RAC,RACONENODE,SI)
         is_container: True
         storage_type: FS                                     # Database storage to be used. ASM or FS.
-        oracle_db_mem_totalmb: 1024                          # Amount of RAM to be used for SGA
+        oracle_db_mem_totalmb: 1900                          # Amount of RAM to be used for SGA
         oracle_database_type: MULTIPURPOSE                   # MULTIPURPOSE|DATA_WAREHOUSING|OLTP
         redolog_size: 75M
         redolog_groups: 3
@@ -16,7 +16,7 @@ oracle_databases:                                               # Dictionary des
         recoveryfile_dest: /u01/fra
         listener_name: LISTENER1524                            # This home will have a listener configured
         listener_port: 1524                      # This home will have a listener configured
-        archivelog: True
+        archivelog: False
         flashback: False
         force_logging: True
 #        dbca_templatename: dbca_12102_cdb.dbt
@@ -26,7 +26,7 @@ oracle_databases:                                               # Dictionary des
         init_parameters:
              - {name: audit_trail, value: 'NONE', scope: spfile, state: present}
              - {name: processes, value: '200', scope: spfile, state: present, dbca: False}
-             - {name: local_listener, value: "'oradb03:1524'", scope: both, state: present}
+             - {name: local_listener, value: "{{inventory_hostname}}:1524", scope: both, state: present}
              - {name: archive_lag_target, value: '900', scope: both, state: present}
              - {name: control_file_record_keep_time, value: '30', scope: both, state: present}
              - {name: db_files, value: '100', scope: spfile, state: present}
@@ -34,7 +34,7 @@ oracle_databases:                                               # Dictionary des
              - {name: deferred_segment_creation , value: 'False', scope: both, state: present}
              - {name: filesystemio_options , value: 'setall', scope: spfile, state: present}
              - {name: job_queue_processes , value: '10', scope: both, state: present}
-#             - {name: use_large_pages , value: 'ONLY', scope: spfile, state: present}
+             - {name: use_large_pages , value: 'ONLY', scope: spfile, state: present}
              - {name: log_archive_dest_1 , value: 'location=USE_DB_RECOVERY_FILE_DEST', scope: both, state: present}
              - {name: log_archive_config , value: 'DG_CONFIG=(testdbu1)', scope: both, state: present, dbca: False}
              - {name: log_buffer , value: '64M', scope: spfile, state: present}
@@ -79,5 +79,5 @@ oracle_databases:                                               # Dictionary des
                  - create session
             state: present
 
-        rman_jobs:
-           - name: parameter
+#        rman_jobs:
+#           - name: parameter

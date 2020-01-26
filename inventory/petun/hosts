@@ -1,4 +1,21 @@
-
 [petun]
-dbfs101 ansible_host=172.28.0.101
+petun-oradb-101 ansible_host=172.28.0.101
+petun-oradb-102 ansible_host=172.28.0.102
+petun-oradb-103 ansible_host=172.28.0.103
+petun-oradb-104 ansible_host=172.28.0.104
+petun-oradb-105 ansible_host=172.28.0.105
+petun-oradb-106 ansible_host=172.28.0.106
+petun-oradb-107 ansible_host=172.28.0.107
+petun-oradb-108 ansible_host=172.28.0.108
+petun-oradb-109 ansible_host=172.28.0.109
+petun-oradb-110 ansible_host=172.28.0.110
+petun-oradb-111 ansible_host=172.28.0.111
+petun-oradb-112 ansible_host=172.28.0.112
+petun-oradb-113 ansible_host=172.28.0.113
+petun-oradb-114 ansible_host=172.28.0.114
+#petun-oradb-115 ansible_host=172.28.0.115
+#petun-oradb-116 ansible_host=172.28.0.116
+#petun-oradb-117 ansible_host=172.28.0.117
+#petun-oradb-118 ansible_host=172.28.0.118
+#petun-oradb-119 ansible_host=172.28.0.119
 
