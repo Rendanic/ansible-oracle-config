@@ -14,5 +14,5 @@
      filesystem:
        - {mntp: /u01, lvname: lvora, lvsize: 100%FREE, fstype: ext4}
      disk:
-       - {device: /dev/xvda, pvname: /dev/xvda2}
-#       - {device: /dev/nvme0n1, pvname: /dev/nvme0n1p2}
+             #       - {device: /dev/xvda, pvname: /dev/xvda2}
+       - {device: /dev/nvme0n1, pvname: /dev/nvme0n1p2}
