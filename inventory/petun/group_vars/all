@@ -10,7 +10,7 @@
   role_separation: False
 
   configure_hugepages_by: memory
-  size_in_gb_hugepages: 2
+  size_in_gb_hugepages: 0
 
 
   #oracle_sw_source_www: https://unknown
