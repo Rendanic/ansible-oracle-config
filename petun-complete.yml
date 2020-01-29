@@ -6,17 +6,38 @@
     - name: Set new hostname
       hostname: name="{{inventory_hostname}}.local"
       tags: sethost
+    - name: Set hwclock
+      timezone:
+        name: UTC
+      tags: awstime
 
 - import_playbook: os.yml
 - import_playbook: swdb.yml
 - import_playbook: createdb.yml
 - import_playbook: manage-db.yml
 
-- name: Zauberkasten
+- name: Post OS Installation
   hosts: "{{ hostgroup }}"
   become: yes
-  become_user: oracle
   tasks:
+    - name: Install SSM
+      package:
+        name: "https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm"
+        state: latest
+      tags: ssm
+    - name: Start AWSSSM
+      service:
+        name: amazon-ssm-agent
+        state: started
+        enabled: yes
+      tags: ssm
+    - name: Enable  AWSSSM
+      service:
+        name: amazon-ssm-agent
+        enabled: yes
+      tags: ssm2
     - name: Zauberkasten
+      become: yes
+      become_user: oracle
       git: dest=/home/oracle/git/SQL-Zauberkasten repo=https://github.com/Rendanic/SQL-Zauberkasten.git
       tags: zauberkasten
