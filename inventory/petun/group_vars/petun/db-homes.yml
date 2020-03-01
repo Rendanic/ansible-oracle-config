@@ -40,6 +40,11 @@ listener_installed:
     state: present
 
 oracle_tnsnames_config:
+  ocrlpdb:
+    connect:
+      service_name: orclpdb
+    address:
+      - host: localhost
   testdb:
     connect:
       service_name: testdb
