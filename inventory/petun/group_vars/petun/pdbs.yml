@@ -23,6 +23,7 @@ oracle_pdbs:
          - { name: system, size: 1g, autoextend: true , next: 20M, maxsize: 3G, numfiles: 1, content: permanent, state: present }
          - { name: sysaux, size: 1g, autoextend: true , next: 20M, maxsize: 3G, numfiles: 1, content: permanent, state: present }
          - { name: temp, size: 1g, autoextend: true , next: 20M, maxsize: 3G, numfiles: 1, content: temp, state: present }
+         - { name: users, size: 100M, autoextend: true , next: 100M, maxsize: 10G, numfiles: 1, content: permanent, state: present }
 
     init_parameters:
          - {name: db_create_file_dest, value: '/u01/oradata/', scope: both, state: present}
