@@ -1,0 +1,6 @@
+[petun]
+petun-oradb-101 ansible_host=172.28.0.101
+petun-oradb-102 ansible_host=172.28.0.102
+petun-oradb-103 ansible_host=172.28.0.103
+petun-oradb-104 ansible_host=172.28.0.104
+petun-oradb-105 ansible_host=172.28.0.105
