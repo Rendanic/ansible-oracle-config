@@ -39,13 +39,13 @@ db_homes_config:
     dnfs: true
     opatch_minversion: 12.2.0.1.13
     opatch:
-        # 27547329;Database Patch Set Update : 12.1.0.2.180717 (27547329)
-        - patchid: 27547329
-          path: 28317214/27967747/27547329
+        # 27547329;Database Patch Set Update : 12.1.0.2.190417 (29141015)
+        - patchid: 29141015
+          path: 29141015/29141015
           state: present
-        # 27923320;Database PSU 12.1.0.2.180717, Oracle JavaVM Component (JUL2018)
-        - patchid: 27923320
-          path: 28317214/27923320
+        # 27923320;Database PSU 12.1.0.2.190417, Oracle JavaVM Component (APR2019)
+        - patchid: 29251241
+          path: 29251241/29251241
           state: present
 
   # 11204-latest:
