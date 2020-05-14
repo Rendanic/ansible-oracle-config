@@ -5,6 +5,7 @@ oracle_databases:                                               # Dictionary des
         oracle_db_name: testdb
         oracle_db_unique_name: testdb
         oracle_db_instance_name: testdb
+        characterset: WE8ISO8859P15
         oracle_db_type: SI                                   # Type of database (RAC,RACONENODE,SI)
         is_container: False
         storage_type: FS                                     # Database storage to be used. ASM or FS.
