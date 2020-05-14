@@ -1,0 +1,89 @@
+apply_patches_db: True
+db_homes_config:
+  # 18300-base:
+  #   home: db1-base
+  #   version: 18.3.0.0
+  #  edition: EE
+  # 12201-base:
+  #   home: db1-base
+  #   version: 12.2.0.1
+  #   edition: EE
+  # 12201-latest:
+  #   home: db1-latest
+  #   version: 12.2.0.1
+  #   oracle_home: /u01/app/oracle/product/12.2.0.1/db1-latest
+  #   edition: EE
+  #   opatch_minversion: 12.2.0.1.12
+  #   opatchauto:
+  #       - patchid: 28183653
+  #         patchversion: 12.2.0.1.180717
+  #         state: present
+  #         subpatches:
+  #             - 28163133
+  #             - 28163190
+  #       - patchid: 27468969
+  #         patchversion: 12.2.0.1.180417
+  #         state: present
+  #         subpatches:
+  #             - 27674384
+  #             - 27464465
+  #   opatch:
+  #       - patchid: 28140658
+  #         state: absent
+
+  12102-latest:
+    home: db1-latest
+    version: 12.1.0.2
+    oracle_home: /u01/app/oracle/product/12.1.0.2/db1-latest
+    edition: EE
+    dnfs: true
+    opatch_minversion: 12.2.0.1.13
+    opatch:
+        # 27547329;Database Patch Set Update : 12.1.0.2.190417 (29141015)
+        - patchid: 29141015
+          path: 29141015/29141015
+          state: present
+        # 27923320;Database PSU 12.1.0.2.190417, Oracle JavaVM Component (APR2019)
+        - patchid: 29251241
+          path: 29251241/29251241
+          state: present
+
+  # 11204-latest:
+  #   home: db1-latest
+  #   version: 11.2.0.4
+  #   edition: EE
+  #   opatch_minversion: 11.2.0.3.6
+  #   opatchauto:
+  #       - patchid: 27475913
+  #         patchversion: 11.2.0.4.180417
+  #         state: present
+  #         subpatches:
+  #             - 27338049
+  #             # - 27441052
+
+db_homes_installed:
+     - home: 12102-latest
+       apply_patches: True
+       state: present
+
+oracle_tnsnames_config:
+      testdb:
+        connect:
+          service_name: testdb
+        address:
+          - host: oradb03
+
+tnsnames_installed:
+      - home: 12102-latest
+        tnsname: testdb
+        state: present
+
+sqlnet_installed:
+      - home: 12102-latest    
+        sqlnet: sqlnetalias1
+        state: present
+
+sqlnet_config:
+      sqlnetalias1:
+        - {name: "ADR_BASE", value: "/u01/app/oracle/" }
+        - {name: "SQLNET.ALLOWED_LOGON_VERSION_CLIENT", value: "12" }

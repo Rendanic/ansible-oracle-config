@@ -1,0 +1,18 @@
+---
+
+  oracle_stage: /u01/stage
+  autostartup_service: true
+
+  configure_host_disks: true
+
+  disable_EE_options: True
+
+
+  host_fs_layout:
+   - vgname: rootvg
+     state: present
+     filesystem:
+       - {mntp: /u01, lvname: lvora, lvsize: 15g, fstype: ext4}
+       - {mntp: /u02, lvname: lvoradata, lvsize: 25g, fstype: ext4}
+     disk:
+       - {device: /dev/sda, pvname: /dev/sda2}
