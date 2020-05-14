@@ -62,3 +62,9 @@ oracle_databases:                                               # Dictionary des
                  - select_catalog_role
                  - create session
             state: present
+        profiles:
+          - name: DEFAULT
+            state: present
+            attributes:
+              - { name: password_life_time, value: unlimited }
+              - { name: failed_login_attempts, value: unlimited }
