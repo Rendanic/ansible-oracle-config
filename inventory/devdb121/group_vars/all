@@ -2,6 +2,8 @@
 
   configure_oracle_sudo: True
 
+  configure_public_yum_repo: False
+
   configure_motd: False
   is_sw_source_local: true
   oracle_sw_copy: False
