@@ -1,6 +1,7 @@
 ---
 
   configure_oracle_sudo: False
+  configure_public_yum_repo: False
 
   configure_motd: False
   is_sw_source_local: true
