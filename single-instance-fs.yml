@@ -1,35 +1,5 @@
 ---
-
-
- - name: Host configuration
-   hosts: "{{ hostgroup }}"
-   become: yes
-   roles:
-      - common
-      - orahost
-#      - orahost-storage
-      - cxoracle
-      - orahost-logrotate
-
- - name: Database Server Installation
-   hosts: "{{ hostgroup }}"
-   become: yes
-   roles:
-      - oraswdb-install
-      - oraswdb-manage-patches
-
- - name: Database Server Database Creation
-   hosts: "{{ hostgroup }}"
-   become: yes
-   roles:
-      - oradb-manage-db
-      - oradb-manage-pdb
-      - oradb-manage-parameters
-      - oradb-manage-tablespace
-      - oradb-manage-redo
-      - oradb-manage-profiles
-      - oradb-manage-roles
-      - oradb-manage-users
-      - oradb-manage-grants
-      - oradb-manage-services
-      - oradb-rman
+  - import_playbook: os.yml
+  - import_playbook: swdb.yml
+  - import_playbook: opatch.yml
+  - import_playbook: manage-db.yml
