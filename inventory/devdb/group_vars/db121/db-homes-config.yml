@@ -1,0 +1,28 @@
+apply_patches_db: True
+
+db_homes_installed:
+     - home: 12102-latest
+       apply_patches: True
+       state: present
+
+oracle_tnsnames_config:
+      testdb:
+        connect:
+          service_name: testdb
+        address:
+          - host: oradb03
+
+tnsnames_installed:
+      - home: 12102-latest
+        tnsname: testdb
+        state: present
+
+sqlnet_installed:
+      - home: 12102-latest    
+        sqlnet: sqlnetalias1
+        state: present
+
+sqlnet_config:
+      sqlnetalias1:
+        - {name: "ADR_BASE", value: "/u01/app/oracle/" }
+        - {name: "SQLNET.ALLOWED_LOGON_VERSION_CLIENT", value: "12" }

@@ -1,7 +1,6 @@
 
 oracle_listeners_config:
    LISTENER:
-#   LISTENER:
         home: 12102-latest
         address:
           - host: "{{ansible_hostname}}"

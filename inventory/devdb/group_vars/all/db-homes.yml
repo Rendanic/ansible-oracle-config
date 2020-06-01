@@ -1,13 +1,28 @@
-apply_patches_db: True
 db_homes_config:
+  db193-latest:
+    home: db193-latest
+    version: 19.3.0.0
+    oracle_home: /u01/app/oracle/product/19.3/db1-latest
+    edition: EE
+    opatch_minversion: 12.2.0.1.17
+    opatch:
+      - patchid: 29834717
+        # Database Release Update : 19.4.0.0.190716 (29834717)
+        patchversion: 19.4.0.0.190716
+        stop_processes: True
+        state: present
+        path: 29708769/29708769/29834717
+      - patchid: 29774421
+        # OJVM RELEASE UPDATE: 19.4.0.0.190716 (29774421)
+        patchversion: 19.4.0.0.190716
+        stop_processes: True
+        state: present
+        path: 29774421/29774421/
+
   # 18300-base:
   #   home: db1-base
   #   version: 18.3.0.0
   #  edition: EE
-  # 12201-base:
-  #   home: db1-base
-  #   version: 12.2.0.1
-  #   edition: EE
   # 12201-latest:
   #   home: db1-latest
   #   version: 12.2.0.1
@@ -60,30 +75,3 @@ db_homes_config:
   #         subpatches:
   #             - 27338049
   #             # - 27441052
-
-db_homes_installed:
-     - home: 12102-latest
-       apply_patches: True
-       state: present
-
-oracle_tnsnames_config:
-      testdb:
-        connect:
-          service_name: testdb
-        address:
-          - host: oradb03
-
-tnsnames_installed:
-      - home: 12102-latest
-        tnsname: testdb
-        state: present
-
-sqlnet_installed:
-      - home: 12102-latest    
-        sqlnet: sqlnetalias1
-        state: present
-
-sqlnet_config:
-      sqlnetalias1:
-        - {name: "ADR_BASE", value: "/u01/app/oracle/" }
-        - {name: "SQLNET.ALLOWED_LOGON_VERSION_CLIENT", value: "12" }

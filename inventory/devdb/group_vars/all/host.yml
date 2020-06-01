@@ -1,12 +1,20 @@
 ---
+  configure_public_yum_repo: False
+  configure_motd: False
+
+  configure_cluster: False
+  role_separation: False
+  configure_oracle_sudo: True
+  oracle_user: oracle
+  disable_EE_options: True
+
+  configure_hugepages_by: memory
+  size_in_gb_hugepages: 0
 
   oracle_stage: /u01/stage
   autostartup_service: true
 
   configure_host_disks: true
-
-  disable_EE_options: True
-
 
   host_fs_layout:
    - vgname: rootvg
