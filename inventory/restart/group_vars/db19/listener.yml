@@ -1,0 +1,12 @@
+oracle_listeners_config:
+  LISTENER:
+    home: db193-latest
+    address:
+      - host: "{{ansible_hostname}}"
+        protocol: TCP
+        port: 1521
+
+listener_installed:
+  - home: db193-latest
+    listener_name: LISTENER
+    state: present

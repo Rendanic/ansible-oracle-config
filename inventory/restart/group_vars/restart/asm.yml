@@ -7,10 +7,10 @@
 
    gi_patches:
      19.3.0.0:
-        opatch_minversion: 12.2.0.1.17
+        opatch_minversion: 12.2.0.1.19
         opatchauto:
           - patchid: 30899722
-            patchversion: 19.4.0.0.190716
+            patchversion: 19.7.0.0.200414
             state: present
             path: 30899722/30899722
             subpatches:
