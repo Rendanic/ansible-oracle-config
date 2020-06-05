@@ -1,0 +1,22 @@
+  configure_public_yum_repo: False
+  configure_motd: False
+
+  configure_cluster: False
+  role_separation: False
+  configure_oracle_sudo: True
+  oracle_user: oracle
+  disable_EE_options: True
+
+  configure_hugepages_by: memory
+  size_in_gb_hugepages: 0
+
+  oracle_stage: /u01/stage
+
+  configure_host_disks: True
+  host_fs_layout:    
+    - vgname: orabasevg
+      state: present
+      filesystem:
+        - {mntp: /u01, lvname: orabaselv, lvsize: 35G, fstype: ext4}
+      disk:
+        - {device: /dev/sdb, pvname: /dev/sdb1}

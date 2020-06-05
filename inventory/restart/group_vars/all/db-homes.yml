@@ -1,0 +1,77 @@
+db_homes_config:
+  db193-latest:
+    home: db193-latest
+    version: 19.3.0.0
+    oracle_home: /u01/app/oracle/product/19.3/db1-latest
+    edition: EE
+    opatch_minversion: 12.2.0.1.17
+    opatch:
+      - patchid: 29834717
+        # Database Release Update : 19.4.0.0.190716 (29834717)
+        patchversion: 19.4.0.0.190716
+        stop_processes: True
+        state: present
+        path: 29708769/29708769/29834717
+      - patchid: 29774421
+        # OJVM RELEASE UPDATE: 19.4.0.0.190716 (29774421)
+        patchversion: 19.4.0.0.190716
+        stop_processes: True
+        state: present
+        path: 29774421/29774421/
+
+  # 18300-base:
+  #   home: db1-base
+  #   version: 18.3.0.0
+  #  edition: EE
+  # 12201-latest:
+  #   home: db1-latest
+  #   version: 12.2.0.1
+  #   oracle_home: /u01/app/oracle/product/12.2.0.1/db1-latest
+  #   edition: EE
+  #   opatch_minversion: 12.2.0.1.12
+  #   opatchauto:
+  #       - patchid: 28183653
+  #         patchversion: 12.2.0.1.180717
+  #         state: present
+  #         subpatches:
+  #             - 28163133
+  #             - 28163190
+  #       - patchid: 27468969
+  #         patchversion: 12.2.0.1.180417
+  #         state: present
+  #         subpatches:
+  #             - 27674384
+  #             - 27464465
+  #   opatch:
+  #       - patchid: 28140658
+  #         state: absent
+
+  12102-latest:
+    home: db1-latest
+    version: 12.1.0.2
+    oracle_home: /u01/app/oracle/product/12.1.0.2/db1-latest
+    edition: EE
+    dnfs: true
+    opatch_minversion: 12.2.0.1.13
+    opatch:
+        # 27547329;Database Patch Set Update : 12.1.0.2.190417 (29141015)
+        - patchid: 29141015
+          path: 29141015/29141015
+          state: present
+        # 27923320;Database PSU 12.1.0.2.190417, Oracle JavaVM Component (APR2019)
+        - patchid: 29251241
+          path: 29251241/29251241
+          state: present
+
+  # 11204-latest:
+  #   home: db1-latest
+  #   version: 11.2.0.4
+  #   edition: EE
+  #   opatch_minversion: 11.2.0.3.6
+  #   opatchauto:
+  #       - patchid: 27475913
+  #         patchversion: 11.2.0.4.180417
+  #         state: present
+  #         subpatches:
+  #             - 27338049
+  #             # - 27441052
