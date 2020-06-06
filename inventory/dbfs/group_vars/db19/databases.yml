@@ -66,8 +66,8 @@ oracle_databases:                                               # Dictionary des
               - { name: password_lock_time, value: 1 }
               - { name: password_verify_function, value: "NULL" }
 
-        services:
-             - { name: service2,  state: started }
+#        services:
+#             - { name: service2,  state: started }
         users:
           - schema: dbsnmp
             state: unlocked

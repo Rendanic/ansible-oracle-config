@@ -1,7 +1,7 @@
 oracle_pdbs:
   - home: db193-latest
     pdb_name: orclpdb
-    listener_port: 1524
+    listener_port: 1521
     datafile_dest: /u02/oradata/
     cdb: db19
     state: present
