@@ -1,0 +1,99 @@
+apply_patches_db: True
+db_homes_config:
+
+  db193-latest:
+    home: db193-latest
+    version: 19.3.0.0
+    oracle_home: /u01/app/oracle/product/19.3/db1-latest
+    edition: EE
+    opatch_minversion: 12.2.0.1.17
+    opatch:
+      - patchid: 29834717
+        # Database Release Update : 19.4.0.0.190716 (29834717)
+        patchversion: 19.4.0.0.190716
+        stop_processes: True
+        state: present
+        path: 29708769/29708769/29834717
+      - patchid: 29774421
+        # OJVM RELEASE UPDATE: 19.4.0.0.190716 (29774421)
+        patchversion: 19.4.0.0.190716
+        stop_processes: True
+        state: present
+        path: 29774421/29774421/
+
+db_homes_installed:
+  - home: db193-latest
+    apply_patches: True
+    state: present
+
+oracle_listeners_config:
+  LISTENER1524:
+    home: db193-latest
+    address:
+      - host: "{{ansible_hostname}}"
+        protocol: TCP
+        port: 1524
+
+listener_installed:
+  - home: db193-latest
+    listener_name: LISTENER1524
+    state: present
+
+oracle_tnsnames_config:
+  testdb:
+    connect:
+      service_name: testdb
+    address:
+      - host: oradg01
+      - host: oradg02
+
+  testdb_dg1:
+    connect:
+      service_name: testdb1_DGMGRL
+    address:
+      - host: oradg01
+
+  testdb_dg2:
+    connect:
+      service_name: testdb2_DGMGRL
+    address:
+      - host: oradg02
+
+  testdb_test:
+    tnstemplate: dgfailover2 # Custom Template for Special Data-Guard
+    connect:
+      service_name: test
+    address:
+      - host: oradg01
+      - host: oradg02
+
+  t1221_dg1:
+    connect:
+      service_name: t1221_DGMGRL
+    address:
+      - host: oradg01
+
+  t1222_dg2:
+    connect:
+      service_name: t1222_DGMGRL
+    address:
+      - host: oradg02
+
+
+#tnsnames_installed:
+#      - home: db193-latest
+#        tnsname: t1221_dg1
+#        state: present
+#      - home: db193-latest
+#        tnsname: t1222_dg2
+#        state: present
+
+#sqlnet_installed:
+#      - home: db193-latest
+#        sqlnet: sqlnetalias1
+#        state: present
+
+sqlnet_config:
+  sqlnetalias1:
+    - {name: "ADR_BASE", value: "/u01/app/oracle/" }
+    - {name: "SQLNET.ALLOWED_LOGON_VERSION_CLIENT", value: "12" }
