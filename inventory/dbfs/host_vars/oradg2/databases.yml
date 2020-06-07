@@ -3,8 +3,8 @@
 oracle_databases:                                               # Dictionary describing the databases to be installed
       - home: db193-latest
         oracle_db_name: db19
-        oracle_db_unique_name: db19u1
-        oracle_db_instance_name: db191
+        oracle_db_unique_name: db19u2
+        oracle_db_instance_name: db192
         oracle_db_type: SI                                   # Type of database (RAC,RACONENODE,SI)
         is_container: True
         storage_type: FS                                     # Database storage to be used. ASM or FS.
@@ -26,7 +26,7 @@ oracle_databases:                                               # Dictionary des
         init_parameters:
              - {name: audit_trail, value: 'NONE', scope: spfile, state: present}
              - {name: processes, value: '200', scope: spfile, state: present, dbca: False}
-             - {name: local_listener, value: "'oradb03:1521'", scope: both, state: present}
+             - {name: local_listener, value: "{{ ansible_host }}:1521", scope: both, state: present}
              - {name: archive_lag_target, value: '900', scope: both, state: present}
              - {name: control_file_record_keep_time, value: '30', scope: both, state: present}
              - {name: db_files, value: '100', scope: spfile, state: present}
@@ -36,7 +36,7 @@ oracle_databases:                                               # Dictionary des
              - {name: job_queue_processes , value: '10', scope: both, state: present}
 #             - {name: use_large_pages , value: 'ONLY', scope: spfile, state: present}
              - {name: log_archive_dest_1 , value: 'location=USE_DB_RECOVERY_FILE_DEST', scope: both, state: present}
-             - {name: log_archive_config , value: 'DG_CONFIG=(testdbu1)', scope: both, state: present, dbca: False}
+             - {name: log_archive_config , value: 'DG_CONFIG=(db19u1, db19u2)', scope: both, state: present, dbca: False}
              - {name: log_buffer , value: '64M', scope: spfile, state: present}
              - {name: pga_aggregate_target, value: '200M', scope: both, state: present, dbca: False}
              - {name: recyclebin, value: 'off', scope: spfile, state: present}
