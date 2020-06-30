@@ -21,23 +21,25 @@ db_homes_config:
         state: present
         path: 30805684/30805684/
 
-db_homes_installed:
-  - home: db193-latest
-    apply_patches: True
-    state: present
-
-oracle_listeners_config:
-  LISTENER1524:
-    home: db193-latest
-    address:
-      - host: "{{ansible_hostname}}"
-        protocol: TCP
-        port: 1521
-
-listener_installed:
-  - home: db193-latest
-    listener_name: LISTENER1524
-    state: present
+  db180-latest:
+    home: db180-latest
+    version: 18.0.0.0
+    oracle_home: /u01/app/oracle/product/18.0/db1-latest
+    edition: EE
+    opatch_minversion: 12.2.0.1.19
+    opatch:
+      - patchid: 30869156
+        # Database Release Update 19.7.0.0.200414
+        patchversion: 19.7.0.0.200414
+        stop_processes: True
+        state: present
+        path: 30869156/30869156
+      - patchid: 30805684
+        # Oracle JavaVM Component Release Update (OJVM RU) 19.7.0.0.200414
+        patchversion: 19.4.0.0.190716
+        stop_processes: True
+        state: present
+        path: 30805684/30805684/
 
 oracle_tnsnames_config:
   dg19_orclpdb:
