@@ -42,7 +42,7 @@ oracle_databases:                                               # Dictionary des
         init_parameters:
              - {name: audit_trail, value: 'NONE', scope: spfile, state: present}
              - {name: processes, value: '200', scope: spfile, state: present, dbca: False}
-             - {name: local_listener, value: "'{{ ansible_host }}:1521'", scope: both, state: present}
+             - {name: local_listener, value: "'{{ ansible_hostname }}:1521'", scope: both, state: present}
              - {name: archive_lag_target, value: '900', scope: both, state: present}
              - {name: control_file_record_keep_time, value: '30', scope: both, state: present}
              - {name: db_files, value: '100', scope: spfile, state: present}
