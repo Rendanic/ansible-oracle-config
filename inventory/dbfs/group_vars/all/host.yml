@@ -1,3 +1,4 @@
+  configure_epel_repo: False
   configure_public_yum_repo: False
   configure_motd: False
 
