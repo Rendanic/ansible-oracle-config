@@ -2,14 +2,11 @@ all:
   children:
     dbfs:
       children:
-        # hostgroup for Single-Instance 19c setup
-        db19:
-          hosts:
-            oradb03:
-        db18:
-          hosts:
-            oradb03:
         # hostgroup for Data-Guard 19c setup
+        ###################################################################
+        # WARNING! DataGuard Setuup is not completed in ansible-oracle!!! #
+        ###################################################################
+
         dg19:
           hosts:
             oradg1:

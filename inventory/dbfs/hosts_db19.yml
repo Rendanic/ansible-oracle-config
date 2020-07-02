@@ -1,0 +1,8 @@
+all:
+  children:
+    dbfs:
+      children:
+        # hostgroup for Single-Instance 19c setup
+        db19:
+          hosts:
+            oradb03:
