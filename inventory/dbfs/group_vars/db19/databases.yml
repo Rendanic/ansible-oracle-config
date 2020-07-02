@@ -1,4 +1,7 @@
-
+db_homes_installed:
+  - home: db193-latest
+    apply_patches: True
+    state: present
 
 oracle_databases:                                               # Dictionary describing the databases to be installed
       - home: db193-latest
