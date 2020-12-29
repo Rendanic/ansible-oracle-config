@@ -1,0 +1,17 @@
+plugin: aws_ec2
+
+regions:
+  - eu-central-1
+
+strict: False
+#ansible_host: private_ip_address
+
+hostnames:
+  - ip-address
+  - dns-name
+  - tag:Name
+  - private-ip-address
+
+keyed_groups:
+  - key: tags
+    prefix: tag

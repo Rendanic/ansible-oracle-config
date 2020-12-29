@@ -1,0 +1,28 @@
+  configure_public_yum_repo: False
+  configure_motd: False
+
+  configure_cluster: False
+  role_separation: False
+  configure_oracle_sudo: True
+  oracle_user: oracle
+  autostartup_service: true
+
+  configure_hugepages_by: memory
+  size_in_gb_hugepages: 0
+
+  oracle_stage: /u01/stage
+
+  configure_host_disks: True
+
+  # aws_2nd_disk is a helper for AWS Instance types
+  # ONLY used inside this file!
+  aws_2nd_disk: /dev/nvme1n1
+
+  host_fs_layout:
+    - vgname: vgora
+      state: present
+      filesystem:
+        - {mntp: /u01, lvname: lvora, lvsize: 15G, fstype: ext4}
+        - {mntp: /u02, lvname: lvoradata, lvsize: 12G, fstype: xfs, fsopts: "-m reflink=1 -m crc=1"}
+      disk:
+        - {device: "{{ aws_2nd_disk }}", pvname: "{{ aws_2nd_disk }}"}

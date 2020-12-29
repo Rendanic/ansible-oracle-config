@@ -1,0 +1,63 @@
+apply_patches_db: True
+db_homes_config:
+
+  db19-latest:
+    home: db19-latest
+    version: 19.3.0.0
+    oracle_home: /u01/app/oracle/product/19c/latest
+    edition: EE
+    opatch_minversion: 12.2.0.1.19
+    opatch:
+      - patchid: 30869156
+        # Database Release Update 19.7.0.0.200414
+        patchversion: 19.7.0.0.200414
+        stop_processes: True
+        state: present
+        path: 30869156/30869156
+      - patchid: 30805684
+        # Oracle JavaVM Component Release Update (OJVM RU) 19.7.0.0.200414
+        patchversion: 19.4.0.0.190716
+        stop_processes: True
+        state: present
+        path: 30805684/30805684/
+
+  db193:
+    home: db193
+    version: 19.3.0.0
+    oracle_home: /u01/app/oracle/product/19c/19.3
+    edition: EE
+    opatch_minversion: 12.2.0.1.19
+
+oracle_listeners_config:
+  LISTENER1521:
+    home: db193-latest
+    address:
+      - host: "{{ansible_hostname}}"
+        protocol: TCP
+        port: 1521
+
+oracle_tnsnames_config:
+  dg19_orclpdb:
+    connect:
+      service_name: orclpdb
+    address:
+      - host: oradg1
+      - host: oradg2
+
+  dg19_db19dg1:
+    connect:
+      service_name: db19u1_DGMGRL
+    address:
+      - host: oradg1
+
+  dg19_db19dg2:
+    connect:
+      service_name: db19u2_DGMGRL
+    address:
+      - host: oradg2
+
+
+sqlnet_config:
+  sqlnetalias1:
+    - {name: "ADR_BASE", value: "/u01/app/oracle/" }
+    - {name: "SQLNET.ALLOWED_LOGON_VERSION_CLIENT", value: "12" }

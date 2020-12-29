@@ -1,0 +1,17 @@
+version: '2.3'
+services:
+  ansible:
+    container_name: ansible
+    image: rendanic/ansibleaws:stable-2.8
+    hostname: ansibleaws
+    mem_limit: 1000m
+    working_dir: /git/ansible-oracle-config
+    volumes:
+      - type: bind
+        source: $HOME/git
+        target: /git
+      - type: bind
+        source: $HOME
+        target: $HOME
+    environment:
+      - "PS1=$$(hostname):$$(pwd) $$ "
