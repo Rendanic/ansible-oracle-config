@@ -4,7 +4,9 @@ regions:
   - eu-central-1
 
 strict: False
-#ansible_host: private_ip_address
+
+filters:
+  instance-state-name: running
 
 hostnames:
   - ip-address
