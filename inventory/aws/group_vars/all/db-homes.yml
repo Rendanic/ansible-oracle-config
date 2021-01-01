@@ -21,6 +21,20 @@ db_homes_config:
         state: present
         path: 30805684/30805684/
 
+  db199:
+    home: db199
+    version: 19.3.0.0
+    oracle_home: "{{ oracle_home | default ('/u01/app/oracle/product/19c/19.9') }}"
+    edition: EE
+    opatch_minversion: 12.2.0.1.19
+    opatch:
+      - patchid: 31771877
+        # Database Release Update 19.9.0.0.201020
+        patchversion: 19.9.0.0.201020
+        stop_processes: True
+        state: present
+        path: ./31750108/31750108/31771877
+
   db193:
     home: db193
     version: 19.3.0.0

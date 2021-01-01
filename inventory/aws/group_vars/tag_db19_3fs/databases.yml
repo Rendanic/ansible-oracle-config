@@ -1,10 +1,12 @@
+db_home_name: db193
+
 db_homes_installed:
-  - home: db193
-    apply_patches: False
+  - home: "{{ db_home_name }}"
+    apply_patches: True
     state: present
 
 listener_installed:
-  - home: db193
+  - home: "{{ db_home_name }}"
     listener_name: LISTENER1521
     state: present
 
@@ -15,7 +17,7 @@ listener_installed:
 
 
 oracle_databases:                                               # Dictionary describing the databases to be installed
-  - home: db193
+  - home: "{{ db_home_name }}"
     oracle_db_name: db19
     oracle_db_unique_name: db19u1
     oracle_db_instance_name: db191
