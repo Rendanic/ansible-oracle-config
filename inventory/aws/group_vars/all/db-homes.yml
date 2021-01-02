@@ -27,6 +27,7 @@ db_homes_config:
     oracle_home: "{{ oracle_home | default ('/u01/app/oracle/product/19c/19.9') }}"
     edition: EE
     opatch_minversion: 12.2.0.1.19
+    # Doc ID 2694903.1
     opatch:
       - patchid: 31771877
         # Database Release Update 19.9.0.0.201020
@@ -34,6 +35,18 @@ db_homes_config:
         stop_processes: True
         state: present
         path: ./31750108/31750108/31771877
+      - patchid: 31772784
+        # OCW RELEASE UPDATE 19.9.0.0.0
+        patchversion: 19.9.0.0.201020
+        stop_processes: True
+        state: present
+        path: ./31750108/31750108/31772784
+      - patchid: 31668882
+        # OJVM RELEASE UPDATE 19.9.0.0.0
+        patchversion: 19.9.0.0.201020
+        stop_processes: True
+        state: present
+        path: ./p31668882_190000_Linux-x86-64.zip
 
   db193:
     home: db193
