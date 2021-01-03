@@ -26,8 +26,8 @@ oracle_databases:                                               # Dictionary des
     storage_type: FS                                     # Database storage to be used. ASM or FS.
     oracle_db_mem_totalmb: 2000                          # Amount of RAM to be used for SGA
     oracle_database_type: MULTIPURPOSE                   # MULTIPURPOSE|DATA_WAREHOUSING|OLTP
-    redolog_size: 75M
-    redolog_groups: 3
+    redolog_size: 150M
+    redolog_groups: 4
     datafile_dest: /u02/oradata
     recoveryfile_dest: /u02/fra
     listener_name: LISTENER1521                            # This home will have a listener configured
