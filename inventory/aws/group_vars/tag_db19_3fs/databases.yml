@@ -24,7 +24,7 @@ oracle_databases:                                               # Dictionary des
     oracle_db_type: SI                                   # Type of database (RAC,RACONENODE,SI)
     is_container: True
     storage_type: FS                                     # Database storage to be used. ASM or FS.
-    oracle_db_mem_totalmb: 1024                          # Amount of RAM to be used for SGA
+    oracle_db_mem_totalmb: 2000                          # Amount of RAM to be used for SGA
     oracle_database_type: MULTIPURPOSE                   # MULTIPURPOSE|DATA_WAREHOUSING|OLTP
     redolog_size: 75M
     redolog_groups: 3
