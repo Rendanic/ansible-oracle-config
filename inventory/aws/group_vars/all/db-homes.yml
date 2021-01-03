@@ -4,6 +4,8 @@ db_homes_config:
   db19-latest:
     home: db19-latest
     version: 19.3.0.0
+    # imagename => use File as GoldenImage
+    imagename: db_home_19.8.zip
     oracle_home: /u01/app/oracle/product/19c/latest
     edition: EE
     opatch_minversion: 12.2.0.1.19
@@ -47,6 +49,29 @@ db_homes_config:
         stop_processes: True
         state: present
         path: ./p31668882_190000_Linux-x86-64.zip
+
+  db198:
+    home: db198
+    version: 19.3.0.0
+    # imagename => use File as GoldenImage
+    imagename: db_home_19.8.zip
+    oracle_home: "{{ oracle_home | default ('/u01/app/oracle/product/19c/19.9') }}"
+    edition: EE
+    opatch_minversion: 12.2.0.1.19
+    # Doc ID 2694903.1
+    opatch:
+      - patchid: 31281355
+        # Database Release Update 19.8.0.0.200714
+        patchversion: 19.8.0.0.200714
+        stop_processes: True
+        state: present
+        path: ./31281355/31281355
+      - patchid: 31219897
+        # OJVM RELEASE UPDATE 19.8.0.0.200714
+        patchversion: 19.8.0.0.200714
+        stop_processes: True
+        state: present
+        path: p31219897_190000_Linux-x86-64.zip
 
   db193:
     home: db193
