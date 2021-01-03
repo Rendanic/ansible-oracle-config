@@ -1,12 +1,12 @@
 apply_patches_db: True
 db_homes_config:
 
-  db19-latest:
-    home: db19-latest
+  db19_latest:
+    home: db19_latest
     version: 19.3.0.0
     # imagename => use File as GoldenImage
-    imagename: db_home_19.8.zip
-    oracle_home: /u01/app/oracle/product/19c/latest
+    imagename: db_home_19.9.zip
+    oracle_home: "{{ oracle_home | default ('/u01/app/oracle/product/19c/latest') }}"
     edition: EE
     opatch_minversion: 12.2.0.1.19
     opatch:
@@ -26,6 +26,8 @@ db_homes_config:
   db199:
     home: db199
     version: 19.3.0.0
+    # imagename => use File as GoldenImage
+    imagename: db_home_19.9.zip
     oracle_home: "{{ oracle_home | default ('/u01/app/oracle/product/19c/19.9') }}"
     edition: EE
     opatch_minversion: 12.2.0.1.19
@@ -55,7 +57,7 @@ db_homes_config:
     version: 19.3.0.0
     # imagename => use File as GoldenImage
     imagename: db_home_19.8.zip
-    oracle_home: "{{ oracle_home | default ('/u01/app/oracle/product/19c/19.9') }}"
+    oracle_home: "{{ oracle_home | default ('/u01/app/oracle/product/19c/19.8') }}"
     edition: EE
     opatch_minversion: 12.2.0.1.19
     # Doc ID 2694903.1
@@ -76,7 +78,7 @@ db_homes_config:
   db193:
     home: db193
     version: 19.3.0.0
-    oracle_home: /u01/app/oracle/product/19c/19.3
+    oracle_home: "{{ oracle_home | default ('/u01/app/oracle/product/19c/19.3') }}"
     edition: EE
     opatch_minversion: 12.2.0.1.19
 
