@@ -9,19 +9,26 @@ db_homes_config:
     oracle_home: "{{ oracle_home | default ('/u01/app/oracle/product/19c/latest') }}"
     edition: EE
     opatch_minversion: 12.2.0.1.19
+    # Doc ID 2694903.1
     opatch:
-      - patchid: 30869156
-        # Database Release Update 19.7.0.0.200414
-        patchversion: 19.7.0.0.200414
+      - patchid: 31771877
+        # Database Release Update 19.9.0.0.201020
+        patchversion: 19.9.0.0.201020
         stop_processes: True
         state: present
-        path: 30869156/30869156
-      - patchid: 30805684
-        # Oracle JavaVM Component Release Update (OJVM RU) 19.7.0.0.200414
-        patchversion: 19.4.0.0.190716
+        path: ./31750108/31750108/31771877
+      - patchid: 31772784
+        # OCW RELEASE UPDATE 19.9.0.0.0
+        patchversion: 19.9.0.0.201020
         stop_processes: True
         state: present
-        path: 30805684/30805684/
+        path: ./31750108/31750108/31772784
+      - patchid: 31668882
+        # OJVM RELEASE UPDATE 19.9.0.0.0
+        patchversion: 19.9.0.0.201020
+        stop_processes: True
+        state: present
+        path: ./p31668882_190000_Linux-x86-64.zip
 
   db199:
     home: db199
@@ -74,6 +81,27 @@ db_homes_config:
         stop_processes: True
         state: present
         path: p31219897_190000_Linux-x86-64.zip
+
+  db197:
+    home: db197
+    version: 19.3.0.0
+    imagename: db_home_19.9.zip
+    oracle_home: "{{ oracle_home | default ('/u01/app/oracle/product/19c/latest') }}"
+    edition: EE
+    opatch_minversion: 12.2.0.1.19
+    opatch:
+      - patchid: 30869156
+        # Database Release Update 19.7.0.0.200414
+        patchversion: 19.7.0.0.200414
+        stop_processes: True
+        state: present
+        path: 30869156/30869156
+      - patchid: 30805684
+        # Oracle JavaVM Component Release Update (OJVM RU) 19.7.0.0.200414
+        patchversion: 19.4.0.0.190716
+        stop_processes: True
+        state: present
+        path: 30805684/30805684/
 
   db193:
     home: db193
