@@ -22,7 +22,7 @@
     - vgname: vgora
       state: present
       filesystem:
-        - {mntp: /u01, lvname: lvora, lvsize: 15G, fstype: ext4}
-        - {mntp: /u02, lvname: lvoradata, lvsize: 12G, fstype: xfs, fsopts: "-m reflink=1 -m crc=1"}
+        - {mntp: /u01, lvname: lvora, lvsize: 20G, fstype: ext4}
+        - {mntp: /u02, lvname: lvoradata, lvsize: 15G, fstype: xfs, fsopts: "-m reflink=1 -m crc=1"}
       disk:
         - {device: "{{ aws_2nd_disk }}", pvname: "{{ aws_2nd_disk }}"}
