@@ -118,16 +118,15 @@ db_homes_config:
     opatch_minversion: 12.2.0.1.19
     opatch:
       # Database Release Update 18.12.0.0.201020
-        - patchid: 31730250
-          path: 31730250/31730250
-          stop_processes: True
-          state: present
+      - patchid: 31730250
+        path: 31730250/31730250
+        stop_processes: True
+        state: present
       # Oracle JavaVM Component Release Update (OJVM RU) 18.12.0.0.201020
-        - patchid: 31668892
-          path: 31668892/31668892
-          stop_processes: True
-          state: present
-
+      - patchid: 31668892
+        path: 31668892/31668892
+        stop_processes: True
+        state: present
 
   db1812:
     home: db1812
@@ -137,16 +136,28 @@ db_homes_config:
     opatch_minversion: 12.2.0.1.19
     opatch:
       # Database Release Update 18.12.0.0.201020
-        - patchid: 31730250
-          path: RU_18.12/31730250
-          stop_processes: True
-          state: present
+      - patchid: 31730250
+        path: 31730250/31730250
+        stop_processes: True
+        state: present
       # Oracle JavaVM Component Release Update (OJVM RU) 18.12.0.0.201020
-        - patchid: 31668892
-          path: RU_18.12/31668892
-          stop_processes: True
-          state: present
+      - patchid: 31668892
+        path: 31668892/31668892
+        stop_processes: True
+        state: present
 
+  db188:
+    home: db188
+    oracle_home: "{{ oracle_home | default ('/u01/app/oracle/product/18c/188') }}"
+    version: 18.3.0.0
+    edition: EE
+    opatch_minversion: 12.2.0.1.19
+    opatch:
+      # Database Release Update 18.8.0.0.201020
+      - patchid: 30112122
+        path: ./30112122/30112122
+        stop_processes: True
+        state: present
 
 oracle_listeners_config:
   LISTENER1521:

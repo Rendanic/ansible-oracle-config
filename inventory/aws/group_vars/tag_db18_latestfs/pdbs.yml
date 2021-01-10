@@ -1,9 +1,9 @@
 oracle_pdbs:
-  - home: db193-latest
+  - home: "{{ db_home_name }}"
     pdb_name: orclpdb
     listener_port: 1521
     datafile_dest: /u02/oradata/
-    cdb: db19
+    cdb: db18
     state: present
     profiles:
       - name: DEFAULT
