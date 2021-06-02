@@ -1,0 +1,9 @@
+---
+
+ - name: Grid-Infrastructure/Restart Create GOlden Image
+   hosts: "{{ hostgroup }}"
+   become: yes
+   vars:
+    golden_image_dest: /u01/golden
+   roles:
+      - oraswgi-golden-image
