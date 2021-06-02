@@ -1,10 +1,10 @@
 db_homes_installed:
-  - home: db193-latest
+  - home: db19-latest-oa
     apply_patches: True
     state: present
 
 oracle_databases:                                               # Dictionary describing the databases to be installed
-  - home: db193-latest
+  - home: db19-latest-oa
     oracle_db_name: db19
     oracle_db_unique_name: db19u1
     oracle_db_instance_name: db191

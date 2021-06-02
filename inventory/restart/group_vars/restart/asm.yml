@@ -1,22 +1,27 @@
 ---
 
    oracle_install_version_gi: 19.3.0.0
+   oracle_install_image_gi: grid_home_19.11.zip
+
    oracle_asm_init_dg: data
 
    apply_patches_gi: True
 
    gi_patches:
      19.3.0.0:
-        opatch_minversion: 12.2.0.1.19
+        opatch_minversion: 12.2.0.1.23
+        imagename: grid_home_19.11.zip
         opatchauto:
-          - patchid: 30899722
-            patchversion: 19.7.0.0.200414
+          - patchid: 32545008
+            patchversion: 19.11.0.0.210420
             state: present
-            path: 30899722/30899722
+            path: 19.11/gi/32545008
             subpatches:
-              - 30869304
-              - 30869156
-              - 30898856
+              - 32579761
+              - 32545013
+              - 32576499
+              - 32585572
+              - 32584670
 
    device_persistence: asmlib
 
