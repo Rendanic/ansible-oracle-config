@@ -3,8 +3,8 @@
 oracle_databases:                                               # Dictionary describing the databases to be installed
       - home: db193-latest
         oracle_db_name: db19
-        oracle_db_unique_name: db19u1
-        oracle_db_instance_name: db191
+        oracle_db_unique_name: db19u2
+        oracle_db_instance_name: db192
         oracle_db_type: SI                                   # Type of database (RAC,RACONENODE,SI)
         is_container: True
         storage_type: FS                                     # Database storage to be used. ASM or FS.
@@ -19,9 +19,7 @@ oracle_databases:                                               # Dictionary des
         archivelog: True
         flashback: False
         force_logging: True
-#        dbca_templatename: dbca_12102_cdb.dbt
         state: present
-        
         tablespaces:
           - { name: system, size: 500M, bigfile: False, autoextend: true , next: 50M, maxsize: 3G, content: permanent, state: present }
           - { name: sysaux, size: 500M, bigfile: False, autoextend: true , next: 50M, maxsize: 3G, content: permanent, state: present }
