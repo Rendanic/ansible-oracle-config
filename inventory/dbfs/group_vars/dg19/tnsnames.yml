@@ -1,10 +1,10 @@
 tnsnames_installed:
-  - home: db193-latest
+  - home: db19-si-ee
     tnsname: dg19_orclpdb
     state: present
-  - home: db193-latest
+  - home: db19-si-ee
     tnsname: dg19_db19dg1
     state: present
-  - home: db193-latest
+  - home: db19-si-ee
     tnsname: dg19_db19dg2
     state: present

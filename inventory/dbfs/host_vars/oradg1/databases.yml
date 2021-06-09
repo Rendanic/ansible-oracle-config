@@ -1,7 +1,7 @@
 
 
 oracle_databases:                                               # Dictionary describing the databases to be installed
-      - home: db193-latest
+      - home: db19-si-ee
         oracle_db_name: db19
         oracle_db_unique_name: db19u1
         oracle_db_instance_name: db191
@@ -21,7 +21,13 @@ oracle_databases:                                               # Dictionary des
         force_logging: True
 #        dbca_templatename: dbca_12102_cdb.dbt
         state: present
-        
+        statspack:
+          state: present
+          tablespace: sysaux
+          purgedays: 32
+          purgeinterval: "FREQ=daily;byhour=13;byminute=15;bysecond=0"
+          snapinterval: "FREQ=hourly;byminute=0;bysecond=0"
+          snaplevel: 7
         tablespaces:
           - { name: system, size: 500M, bigfile: False, autoextend: true , next: 50M, maxsize: 3G, content: permanent, state: present }
           - { name: sysaux, size: 500M, bigfile: False, autoextend: true , next: 50M, maxsize: 3G, content: permanent, state: present }

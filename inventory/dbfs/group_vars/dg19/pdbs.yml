@@ -1,10 +1,13 @@
 oracle_pdbs:
-  - home: db193-latest
+  - home: db19-si-ee
     pdb_name: orclpdb
     listener_port: 1521
     datafile_dest: /u02/oradata/
     cdb: db19
     state: present
+    statspack:
+      state: present
+      a: a
     profiles:
       - name: DEFAULT
         state: present

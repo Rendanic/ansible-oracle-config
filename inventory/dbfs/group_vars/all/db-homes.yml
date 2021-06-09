@@ -1,8 +1,8 @@
 apply_patches_db: True
 db_homes_config:
 
-  db193-latest:
-    home: db193-latest
+  db1911-si-ee: &db1911-si-ee
+    home: db19-si-ee
     version: 19.3.0.0
     oracle_home: /u01/app/oracle/product/19.3/db1-latest
     imagename: db_home_19.11.zip
@@ -21,21 +21,71 @@ db_homes_config:
         state: present
         path: 19.11/ojvm/32399816/
 
+  db1814-si-ee: &db1814-si-ee
+    home: db18-latest
+    version: 18.3.0.0
+    oracle_home: /u01/app/oracle/product/18/db1-latest
+    edition: EE
+    opatch_minversion: 12.2.0.1.19
+    opatch:
+      - # JOB PROCESSES FILL THE FILESYSTEM WITH TRACE FILES AFTER INSTALLING BUG 29541742
+        { patchid: 30352715, state: absent, excludeUPI: 24122032, stop_processes: True }
+      - patchid: 32204699
+        patchversion: 18.14.0.0.210420
+        stop_processes: True
+        state: present
+        path: 18.14/dbru/32524155
+      # Opatch conflict check fail with - Please rebuild the superset patch xxx to make sure it supersedes all the relevant patch [xxx , xxx] (Doc ID 2477824.1)
+      # - patchid: 30352715
+      #   # Oracle JavaVM Component Release Update (OJVM RU) 19.7.0.0.200414
+      #   stop_processes: True
+      #   state: present
+      #   path: 18.14/p30352715_1814000DBRU_Linux-x86-64.zip
+      - # JOB PROCESSES FILL THE FILESYSTEM WITH TRACE FILES AFTER INSTALLING BUG 29541742
+        { patchid: 30352715, state: present, stop_processes: True, path: 18.14/p30352715_1814000DBRU_Linux-x86-64.zip}
+
+  db1813-si-ee: &db1813-si-ee
+    home: db18-latest
+    version: 18.3.0.0
+    oracle_home: /u01/app/oracle/product/18/db1-latest
+    edition: EE
+    opatch_minversion: 12.2.0.1.19
+    opatch:
+      - patchid: 32204699
+        patchversion: 18.13.0.0.210119
+        stop_processes: True
+        state: present
+        path: 18.13/dbru/32204699
+      - patchid: 30352715
+        # Oracle JavaVM Component Release Update (OJVM RU) 19.7.0.0.200414
+        patchversion: 18.13.0.0.210119
+        stop_processes: True
+        state: present
+        path: 18.13/p30352715_1813000DBRU_Linux-x86-64.zip
+
+  # Current Mapping of ORACLE_HOMEs
+  # use this mapping for fast change between the Patchsets
+  db19-si-ee: *db1911-si-ee
+  db18-si-ee: *db1813-si-ee
+
 db_homes_installed:
-  - home: db193-latest
+  - home: db19-si-ee
     apply_patches: True
     state: present
+  # - home: db18-si-ee
+  #   apply_patches: True
+  #   state: present
 
 oracle_listeners_config:
   LISTENER1524:
-    home: db193-latest
+    home: db19-si-ee
     address:
       - host: "{{ansible_hostname}}"
         protocol: TCP
         port: 1521
 
 listener_installed:
-  - home: db193-latest
+  - home: db19-si-ee
     listener_name: LISTENER1524
     state: present
 
@@ -60,7 +110,7 @@ oracle_tnsnames_config:
       - host: oradg2
 
 #sqlnet_installed:
-#      - home: db193-latest
+#      - home: db19-si-ee
 #        sqlnet: sqlnetalias1
 #        state: present
 
