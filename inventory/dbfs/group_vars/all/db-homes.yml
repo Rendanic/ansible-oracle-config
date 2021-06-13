@@ -6,19 +6,29 @@ db_homes_config:
     version: 19.3.0.0
     oracle_home: /u01/app/oracle/product/19/db1911-si-ee
     edition: EE
-    opatch_minversion: 12.2.0.1.19
+    opatch_minversion: 12.2.0.1.24
     opatch:
       - patchid: 32545013
+        # Database Release Update 19.11.0.0.210420
         patchversion: 19.11.0.0.210420
         stop_processes: True
         state: present
-        path: 30869156/30869156
+        path: 19.11.0.0.210420/gi/32545008/32545013
+      - patchid: 32399816
+        # OCW Release Update 19.11.0.0.210420
+        stop_processes: True
+        state: present
+        path: 19.11.0.0.210420/gi/32545008/32579761
       - patchid: 32399816
         # Oracle JavaVM Component Release Update (OJVM RU) 19.7.0.0.200414
-        patchversion: 19.11.0.0.210420
         stop_processes: True
         state: present
-        path: 19.11/ojvm/32399816/
+        path: 19.11.0.0.210420/ojvm/p32399816_190000_Linux-x86-64.zip
+        # Oracle Database 19c Important Recommended One-off Patches (Doc ID 555.1)
+      - { patchid: 32522300, path: 19.11.0.0.210420/p32522300_1911000DBRU_Linux-x86-64.zip , state: present, stop_processes: True}
+      - { patchid: 31143146, path: 19.11.0.0.210420/p31143146_1911000DBRU_Linux-x86-64.zip , state: present, stop_processes: True}
+      - { patchid: 31602782, path: 19.11.0.0.210420/p31602782_1911000DBRU_Linux-x86-64.zip , state: present, stop_processes: True}
+      - { patchid: 32919937, path: 19.11.0.0.210420/p32919937_1911000DBRU_Linux-x86-64.zip , state: present, stop_processes: True}
 
   db1814-si-ee: &db1814-si-ee
     home: db1814-si-ee
@@ -29,17 +39,17 @@ db_homes_config:
     opatch:
       - # JOB PROCESSES FILL THE FILESYSTEM WITH TRACE FILES AFTER INSTALLING BUG 29541742
         { patchid: 30352715, state: absent, excludeUPI: 24122032, stop_processes: True }
-      - patchid: 32204699
+      - patchid: 32524155
+        # Database Release Update 18.14.0.0.210420
         patchversion: 18.14.0.0.210420
         stop_processes: True
         state: present
         path: 18.14/dbru/32524155
-      # Opatch conflict check fail with - Please rebuild the superset patch xxx to make sure it supersedes all the relevant patch [xxx , xxx] (Doc ID 2477824.1)
-      # - patchid: 30352715
-      #   # Oracle JavaVM Component Release Update (OJVM RU) 19.7.0.0.200414
-      #   stop_processes: True
-      #   state: present
-      #   path: 18.14/p30352715_1814000DBRU_Linux-x86-64.zip
+      - patchid: 32552752
+        # Oracle JavaVM Component Release Update (OJVM RU) 19.7.0.0.200414
+        stop_processes: True
+        state: present
+        path: 18.14/ojvm/p32552752_180000_Linux-x86-64.zip
       - # JOB PROCESSES FILL THE FILESYSTEM WITH TRACE FILES AFTER INSTALLING BUG 29541742
         { patchid: 30352715, state: present, stop_processes: True, path: 18.14/p30352715_1814000DBRU_Linux-x86-64.zip}
 
@@ -96,14 +106,11 @@ db_homes_config:
     oracle_home: /u01/app/oracle/product/19/db1
     home: db19-si-ee
   db18-si-ee:
-    << : *db1813-si-ee
-    oracle_home: /u01/app/oracle/product/18/db1
-    home: db18-si-ee
+    << : *db1814-si-ee
+    # oracle_home: /u01/app/oracle/product/18/db1
+    # home: db18-si-ee
 
 db_homes_installed:
-  # - home: db19-si-ee
-  #   apply_patches: True
-  #   state: present
-  - home: db18-si-ee
+  - home: db19-si-ee
     apply_patches: True
     state: present
