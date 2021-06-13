@@ -2,10 +2,9 @@ apply_patches_db: True
 db_homes_config:
 
   db1911-si-ee: &db1911-si-ee
-    home: db19-si-ee
+    home: db1911-si-ee
     version: 19.3.0.0
-    oracle_home: /u01/app/oracle/product/19.3/db1-latest
-    imagename: db_home_19.11.zip
+    oracle_home: /u01/app/oracle/product/19/db1911-si-ee
     edition: EE
     opatch_minversion: 12.2.0.1.19
     opatch:
@@ -22,9 +21,9 @@ db_homes_config:
         path: 19.11/ojvm/32399816/
 
   db1814-si-ee: &db1814-si-ee
-    home: db18-latest
+    home: db1814-si-ee
     version: 18.3.0.0
-    oracle_home: /u01/app/oracle/product/18/db1-latest
+    oracle_home: /u01/app/oracle/product/18/db1814-si-ee
     edition: EE
     opatch_minversion: 12.2.0.1.19
     opatch:
@@ -45,9 +44,9 @@ db_homes_config:
         { patchid: 30352715, state: present, stop_processes: True, path: 18.14/p30352715_1814000DBRU_Linux-x86-64.zip}
 
   db1813-si-ee: &db1813-si-ee
-    home: db18-latest
+    home: db1813-si-ee
     version: 18.3.0.0
-    oracle_home: /u01/app/oracle/product/18/db1-latest
+    oracle_home: /u01/app/oracle/product/18/db1813-si-ee
     edition: EE
     opatch_minversion: 12.2.0.1.19
     opatch:
@@ -62,59 +61,49 @@ db_homes_config:
         stop_processes: True
         state: present
         path: 18.13/p30352715_1813000DBRU_Linux-x86-64.zip
+      - # JOB PROCESSES FILL THE FILESYSTEM WITH TRACE FILES AFTER INSTALLING BUG 29541742
+        { patchid: 30352715, state: present, stop_processes: True, path: 18.13/p30352715_1813000DBRU_Linux-x86-64.zip}
+
+  db12201-si-ee:
+    home: db12201-si-ee
+    version: 12.2.0.1
+    oracle_home: /u01/app/oracle/product/12.2.0.1/db12201-si-ee
+    edition: EE
+    dnfs: true
+    opatch_minversion: 12.2.0.1.13
+
+  db12102-si-ee:
+    home: db12102-si-ee
+    version: 12.1.0.2
+    oracle_home: /u01/app/oracle/product/12.1.0.2/db12102-si-ee
+    edition: EE
+    dnfs: true
+    opatch_minversion: 12.2.0.1.13
+
+  db11204-si-ee:
+    home: db11204-si-ee
+    version: 11.2.0.4
+    oracle_home: /u01/app/oracle/product/11.2.0.4/db11204-si-ee
+    edition: EE
+    opatch_minversion: 11.2.0.3.20
 
   # Current Mapping of ORACLE_HOMEs
-  # use this mapping for fast change between the Patchsets
-  db19-si-ee: *db1911-si-ee
-  db18-si-ee: *db1813-si-ee
+  # use this mapping for fast change between the Release Updates
+  # <<: * => merge values from alias and overwrite oracle_home + home
+  db19-si-ee:
+    << : *db1911-si-ee
+    imagename: db_home_19.11.zip
+    oracle_home: /u01/app/oracle/product/19/db1
+    home: db19-si-ee
+  db18-si-ee:
+    << : *db1813-si-ee
+    oracle_home: /u01/app/oracle/product/18/db1
+    home: db18-si-ee
 
 db_homes_installed:
-  - home: db19-si-ee
-    apply_patches: True
-    state: present
-  # - home: db18-si-ee
+  # - home: db19-si-ee
   #   apply_patches: True
   #   state: present
-
-oracle_listeners_config:
-  LISTENER1524:
-    home: db19-si-ee
-    address:
-      - host: "{{ansible_hostname}}"
-        protocol: TCP
-        port: 1521
-
-listener_installed:
-  - home: db19-si-ee
-    listener_name: LISTENER1524
+  - home: db18-si-ee
+    apply_patches: True
     state: present
-
-oracle_tnsnames_config:
-  dg19_orclpdb:
-    connect:
-      service_name: orclpdb
-    address:
-      - host: oradg1
-      - host: oradg2
-
-  dg19_db19dg1:
-    connect:
-      service_name: db19u1_DGMGRL
-    address:
-      - host: oradg1
-
-  dg19_db19dg2:
-    connect:
-      service_name: db19u2_DGMGRL
-    address:
-      - host: oradg2
-
-#sqlnet_installed:
-#      - home: db19-si-ee
-#        sqlnet: sqlnetalias1
-#        state: present
-
-sqlnet_config:
-  sqlnetalias1:
-    - {name: "ADR_BASE", value: "/u01/app/oracle/" }
-    - {name: "SQLNET.ALLOWED_LOGON_VERSION_CLIENT", value: "12" }
