@@ -1,3 +1,9 @@
+This project has been archived.
+
+Please use the new project: https://github.com/opitzconsulting/ansible-oracle-inventory
+
+
+
 # ansible-oracle example configurations
 
 ## Oracle GoldenImage
